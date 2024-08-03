@@ -1,27 +1,22 @@
 import { Loan } from "../src/domain/entities/Loan";
 import LoanBuilder from "./utils/LoanBuilder";
+import Birthdate from "../src/domain/value-objects/Birthdate";
 
 test("Should create a loan", function () {
   const loan = new Loan(
     "14863335750",
     "MG",
-    new Date("1998-06-18T00:00:00"),
+    new Birthdate(new Date("1998-06-18T00:00:00")),
     100000,
     15000
   );
   expect(loan.userCpf).toBe("14863335750");
   expect(loan.userUf).toBe("MG");
-  expect(loan.userBirthdate).toEqual(new Date("1998-06-18T00:00:00"));
+  expect(loan.userBirthdate).toEqual(
+    new Birthdate(new Date("1998-06-18T00:00:00"))
+  );
   expect(loan.total).toBe(100000);
   expect(loan.monthlyInstallment).toBe(15000);
-});
-
-test("Should not create a loan with a birthdate after the current date", function () {
-  const futureDate = new Date();
-  futureDate.setFullYear(futureDate.getFullYear() + 1);
-  expect(() => LoanBuilder.New().WithUserBirthDate(futureDate).Build()).toThrow(
-    new Error("User's birthdate cannot be in the future")
-  );
 });
 
 test("Should not create a loan with a total less than 50,000", function () {

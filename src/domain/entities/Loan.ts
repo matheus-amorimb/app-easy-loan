@@ -1,4 +1,5 @@
 import { FederativeUnit } from "../types/FederativeUnit.type";
+import Birthdate from "../value-objects/Birthdate";
 
 export class Loan {
   id?: number;
@@ -7,20 +8,13 @@ export class Loan {
   constructor(
     readonly userCpf: string,
     readonly userUf: FederativeUnit,
-    readonly userBirthdate: Date,
+    readonly userBirthdate: Birthdate,
     readonly total: number,
     readonly monthlyInstallment: number
   ) {
-    this.validateUserBirthday(userBirthdate);
     this.validateTotal(total);
     this.validateMonthlyInstallment(total, monthlyInstallment);
     this.interestRate = this.getInterestRate(userUf);
-  }
-
-  private validateUserBirthday(userBirthdate: Date) {
-    if (new Date() < userBirthdate) {
-      throw new Error("User's birthdate cannot be in the future");
-    }
   }
 
   private validateTotal(total: number) {
