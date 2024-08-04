@@ -19,7 +19,8 @@ export default class CalculateInstallements {
 
       const dueDate = new Date(initialDate);
       dueDate.setMonth(dueDate.getMonth() + counter);
-      const installment = new Installment(
+      const installment = Installment.create(
+        input.id,
         counter,
         formatToTwoDecimals(outstandingBalance),
         formatToTwoDecimals(interest),
