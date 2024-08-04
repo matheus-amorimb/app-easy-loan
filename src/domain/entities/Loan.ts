@@ -2,20 +2,64 @@ import { FederativeUnit } from "../types/FederativeUnit.type";
 import Birthdate from "../value-objects/Birthdate";
 
 export class Loan {
-  id?: number;
-  interestRate: number = 0;
-  date: Date = new Date();
+  readonly userUf: FederativeUnit;
+  readonly userBirthdate: Birthdate;
+  readonly interestRate: number = 0;
 
   constructor(
+    readonly id: string,
     readonly userCpf: string,
-    readonly userUf: FederativeUnit,
-    readonly userBirthdate: Birthdate,
+    userUf: string,
+    userBirthdate: Date,
     readonly total: number,
-    readonly monthlyInstallment: number
+    readonly monthlyInstallment: number,
+    readonly date: Date
   ) {
     this.validateTotal(total);
     this.validateMonthlyInstallment(total, monthlyInstallment);
+    this.userUf = this.validateFederativeUnit(userUf);
+    this.userBirthdate = new Birthdate(userBirthdate);
     this.interestRate = this.getInterestRate(userUf);
+  }
+
+  static create(
+    userCpf: string,
+    userUf: string,
+    userBirthdate: Date,
+    total: number,
+    monthlyInstallment: number
+  ): Loan {
+    const id = crypto.randomUUID();
+    const date = new Date();
+    return new Loan(
+      id,
+      userCpf,
+      userUf,
+      userBirthdate,
+      total,
+      monthlyInstallment,
+      date
+    );
+  }
+
+  static restore(
+    id: string,
+    userCpf: string,
+    userUf: string,
+    userBirthdate: Date,
+    total: number,
+    monthlyInstallment: number,
+    date: Date
+  ): Loan {
+    return new Loan(
+      id,
+      userCpf,
+      userUf,
+      userBirthdate,
+      total,
+      monthlyInstallment,
+      date
+    );
   }
 
   private validateTotal(total: number) {
@@ -43,5 +87,13 @@ export class Loan {
       default:
         throw new Error(`No interest rate defined for state: ${uf}`);
     }
+  }
+
+  private validateFederativeUnit(value: string) {
+    const validUnits: FederativeUnit[] = ["MG", "ES", "SP", "RJ"];
+    if (!validUnits.includes(value as FederativeUnit)) {
+      throw new Error(`Invalid federative unit: ${value}`);
+    }
+    return value as FederativeUnit;
   }
 }

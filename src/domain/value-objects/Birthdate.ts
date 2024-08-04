@@ -1,5 +1,5 @@
 export default class Birthdate {
-  private value: Date;
+  readonly value: Date;
 
   constructor(birthdate: Date) {
     if (!this.validate(birthdate)) throw new Error("Invalid birthdate");
