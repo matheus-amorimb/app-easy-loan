@@ -5,8 +5,23 @@ import DatabaseConnection from "../database/DatabaseConnection";
 export default class LoanRepository implements ILoanRepository {
   constructor(readonly connection: DatabaseConnection) {}
 
-  getAll(): Promise<Loan[]> {
-    throw new Error("Method not implemented.");
+  async getAll(): Promise<Loan[]> {
+    const loans = await this.connection.query(
+      "SELECT * FROM easyloan.loan ORDER BY date",
+      []
+    );
+
+    return loans?.map((loan: any) => {
+      return Loan.restore(
+        loan.id,
+        loan.user_cpf,
+        loan.user_uf,
+        loan.user_birthdate,
+        parseFloat(loan.total),
+        parseFloat(loan.monthly_installment),
+        loan.date
+      );
+    });
   }
 
   async getById(loanId: string) {
@@ -28,7 +43,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async save(loan: Loan) {
     await this.connection.query(
-      "INSERT INTO easyloan.loan (id, user_cpf, user_uf, user_birthdate, total, monthly_installment, date) values ($1, $2, $3, $4, $5, $6, $7)",
+      "INSERT INTO easyloan.loan (id, user_cpf, user_uf, user_birthdate, total, monthly_installment, date) VALUES ($1, $2, $3, $4, $5, $6, $7)",
       [
         loan.id,
         loan.userCpf,
@@ -39,5 +54,9 @@ export default class LoanRepository implements ILoanRepository {
         loan.date,
       ]
     );
+  }
+
+  async deleteAll() {
+    await this.connection.query("DELETE FROM easyloan.loan", []);
   }
 }
