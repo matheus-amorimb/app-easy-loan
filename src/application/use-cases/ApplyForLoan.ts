@@ -8,22 +8,30 @@ import UseCase from "./UseCase";
 
 export default class ApplyForLoan implements UseCase {
   constructor(
-    readonly loanRepository: ILoanRepository // readonly installmentRepository: IInstallmentRepository
+    readonly loanRepository: ILoanRepository,
+    readonly installmentRepository: IInstallmentRepository
   ) {}
 
   async execute(input: ApplyForLoanInput): Promise<ApplyForLoanOutput> {
     const loan = Loan.create(
       input.userCpf,
       input.userUf,
-      input.userBirthday,
+      input.userBirthdate,
       input.total,
       input.monthlyInstallment
     );
     const installments = CalculateInstallements.calculate(loan);
-    await this.loanRepository.save(loan);
-    // installments.forEach(
-    //   async (installment) => await this.installmentRepository.save(installment)
-    // );
+
+    try {
+      await this.loanRepository.save(loan);
+      installments.forEach(
+        async (installment) =>
+          await this.installmentRepository.save(installment)
+      );
+    } catch (error) {
+      console.error("Transaction failed:", error);
+      throw new Error("Failed to apply for loan");
+    }
     return {
       loanId: loan.id,
     };

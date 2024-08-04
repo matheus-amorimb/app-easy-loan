@@ -40,4 +40,8 @@ export default class InstallmentRepository implements IInstallmentRepository {
       ]
     );
   }
+
+  async deleteAll() {
+    await this.connection.query("DELETE FROM easyloan.installment", []);
+  }
 }

@@ -9,7 +9,6 @@ export default class GetLoan implements UseCase {
 
   async execute(input: GetLoanInput): Promise<GetLoanOutput> {
     const loan = await this.loanRepository.getById(input.loanId);
-    console.log(loan);
     if (!loan) throw new Error("Loan not found");
     return {
       id: loan.id,

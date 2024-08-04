@@ -1,4 +1,5 @@
 import CalculateInstallments from "../../src/domain/services/CalculateInstallments";
+import { addMonthsToDate } from "../utils/AddMonthsToDate";
 import LoanBuilder from "../utils/LoanBuilder";
 
 test("Should calculate installments for a loan", function () {
@@ -14,8 +15,7 @@ test("Should calculate installments for a loan", function () {
   expect(firstInstallment.interest).toBe(600);
   expect(firstInstallment.adjustedOutstandingBalance).toBe(60600);
   expect(firstInstallment.amount).toBe(15000);
-  let firstDate = new Date(loan.date);
-  firstDate.setMonth(firstDate.getMonth() + 1);
+  let firstDate = addMonthsToDate(loan.date, 1);
   expect(firstInstallment.dueData).toEqual(firstDate);
 
   const lastInstallment = installments[4];
@@ -24,7 +24,6 @@ test("Should calculate installments for a loan", function () {
   expect(lastInstallment.interest).toBe(15.3);
   expect(lastInstallment.adjustedOutstandingBalance).toBe(1545.53);
   expect(lastInstallment.amount).toBe(1545.53);
-  let finalDate = new Date(loan.date);
-  finalDate.setMonth(finalDate.getMonth() + 5);
+  let finalDate = addMonthsToDate(loan.date, 5);
   expect(lastInstallment.dueData).toEqual(finalDate);
 });

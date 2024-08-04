@@ -1,12 +1,18 @@
-import pgp from "pg-promise";
+import pgp, { IDatabase } from "pg-promise";
+import dotenv from "dotenv";
+import { IClient } from "pg-promise/typescript/pg-subset";
+
+dotenv.config();
 
 export default class DatabaseConnection {
-  connection: any;
+  connection: IDatabase<any, IClient>;
 
   constructor() {
-    this.connection = pgp()(
-      "postgres://postgres:148036@localhost:5432/easyloan"
-    );
+    const databaseUrl = process.env.DATABASE_URL;
+    if (!databaseUrl) {
+      throw new Error("DATABASE_URL environment variable is not defined");
+    }
+    this.connection = pgp()(databaseUrl);
   }
 
   query(statement: string, params: any): Promise<any> {
@@ -15,5 +21,13 @@ export default class DatabaseConnection {
 
   close(): Promise<void> {
     return this.connection.$pool.end();
+  }
+
+  task(callback: (t: any) => any) {
+    return this.connection.task(callback);
+  }
+
+  transaction(callback: (t: any) => any) {
+    return this.connection.tx(callback);
   }
 }

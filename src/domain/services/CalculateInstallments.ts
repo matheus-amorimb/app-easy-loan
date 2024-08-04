@@ -1,5 +1,6 @@
 import Installment from "../entities/Installment";
 import { Loan } from "../entities/Loan";
+import { addMonthsToDate } from "./AddMonthsToDate";
 
 export default class CalculateInstallements {
   static calculate(input: Loan): Installment[] {
@@ -17,8 +18,7 @@ export default class CalculateInstallements {
           ? adjustedOutstandingBalance
           : input.monthlyInstallment;
 
-      const dueDate = new Date(initialDate);
-      dueDate.setMonth(dueDate.getMonth() + counter);
+      const dueDate = addMonthsToDate(initialDate, counter);
       const installment = Installment.create(
         input.id,
         counter,
@@ -30,6 +30,7 @@ export default class CalculateInstallements {
       );
       installments.push(installment);
       outstandingBalance = adjustedOutstandingBalance - amount;
+      // if (outstandingBalance > 300000) outstandingBalance = 0;
       counter++;
     }
     return installments;
