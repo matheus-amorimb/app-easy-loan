@@ -1,5 +1,5 @@
-import CalculateInstallments from "../src/domain/services/CalculateInstallments";
-import LoanBuilder from "./utils/LoanBuilder";
+import CalculateInstallments from "../../src/domain/services/CalculateInstallments";
+import LoanBuilder from "../utils/LoanBuilder";
 
 test("Should calculate installments for a loan", function () {
   const loan = LoanBuilder.New().Build();

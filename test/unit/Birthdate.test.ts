@@ -1,4 +1,4 @@
-import Birthdate from "../src/domain/value-objects/Birthdate";
+import Birthdate from "../../src/domain/value-objects/Birthdate";
 
 test("Should not create Birthdate with invalid date", function () {
   const futureDate = new Date();

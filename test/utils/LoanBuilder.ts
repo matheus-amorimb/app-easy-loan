@@ -4,8 +4,8 @@ import Birthdate from "../../src/domain/value-objects/Birthdate";
 
 export default class LoanBuilder {
   userCpf: string = "14863335750";
-  userUf: FederativeUnit = "MG";
-  userBirthdate: Birthdate = new Birthdate(new Date("1998-06-18T00:00:00"));
+  userUf: string = "MG";
+  userBirthdate: Date = new Date("1998-06-18T00:00:00");
   total: number = 60000;
   monthlyInstallment: number = 15000;
 
@@ -18,7 +18,7 @@ export default class LoanBuilder {
     return this;
   }
 
-  public WithUserBirthDate(userBirthdate: Birthdate): LoanBuilder {
+  public WithUserBirthDate(userBirthdate: Date): LoanBuilder {
     this.userBirthdate = userBirthdate;
     return this;
   }
@@ -34,7 +34,7 @@ export default class LoanBuilder {
   }
 
   public Build() {
-    return new Loan(
+    return Loan.create(
       this.userCpf,
       this.userUf,
       this.userBirthdate,
