@@ -4,6 +4,7 @@ import Birthdate from "../value-objects/Birthdate";
 export class Loan {
   id?: number;
   interestRate: number = 0;
+  date: Date = new Date();
 
   constructor(
     readonly userCpf: string,

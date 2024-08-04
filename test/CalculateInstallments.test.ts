@@ -4,6 +4,7 @@ import LoanBuilder from "./utils/LoanBuilder";
 test("Should calculate installments for a loan", function () {
   const loan = LoanBuilder.New().Build();
   const installments = CalculateInstallments.calculate(loan);
+
   expect(installments).toBeDefined();
   expect(installments).toHaveLength(5);
 
@@ -13,7 +14,9 @@ test("Should calculate installments for a loan", function () {
   expect(firstInstallment.interest).toBe(600);
   expect(firstInstallment.adjustedOutstandingBalance).toBe(60600);
   expect(firstInstallment.amount).toBe(15000);
-  expect(firstInstallment.dueData).toEqual(new Date());
+  let firstDate = new Date(loan.date);
+  firstDate.setMonth(firstDate.getMonth() + 1);
+  expect(firstInstallment.dueData).toEqual(firstDate);
 
   const lastInstallment = installments[4];
   expect(lastInstallment.number).toBe(5);
@@ -21,7 +24,7 @@ test("Should calculate installments for a loan", function () {
   expect(lastInstallment.interest).toBe(15.3);
   expect(lastInstallment.adjustedOutstandingBalance).toBe(1545.53);
   expect(lastInstallment.amount).toBe(1545.53);
-  let finalDate = new Date();
-  finalDate.setMonth(finalDate.getMonth() + 4);
+  let finalDate = new Date(loan.date);
+  finalDate.setMonth(finalDate.getMonth() + 5);
   expect(lastInstallment.dueData).toEqual(finalDate);
 });
