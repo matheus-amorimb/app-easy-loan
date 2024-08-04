@@ -2,7 +2,7 @@ import { Type } from "class-transformer";
 import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import "reflect-metadata";
 
-export default interface ApplyForLoanInput {
+export default interface SimulateLoanInput {
   userCpf: string;
   userUf: string;
   userBirthdate: Date;
@@ -10,7 +10,7 @@ export default interface ApplyForLoanInput {
   monthlyInstallment: number;
 }
 
-export class ApplyForLoanInputClass {
+export class SimulateLoanInputClass {
   @IsString()
   @IsNotEmpty()
   userCpf!: string;
