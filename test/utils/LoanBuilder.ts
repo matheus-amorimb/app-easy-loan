@@ -6,7 +6,7 @@ export default class LoanBuilder {
   userCpf: string = "14863335750";
   userUf: FederativeUnit = "MG";
   userBirthdate: Birthdate = new Birthdate(new Date("1998-06-18T00:00:00"));
-  total: number = 100000;
+  total: number = 60000;
   monthlyInstallment: number = 15000;
 
   static New(): LoanBuilder {
