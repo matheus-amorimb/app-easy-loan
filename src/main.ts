@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import loanRouter from "./ui/routes/loanRoutes";
@@ -11,6 +11,12 @@ const API_VERSION = "v1";
 
 app.use(bodyParser.json());
 app.use(`/${API_VERSION}/loans`, loanRouter);
+app.use(`/${API_VERSION}/health`, (req: Request, res: Response) =>
+  res.status(200).json("Ok")
+);
+app.use(`/${API_VERSION}/timestamp`, (req: Request, res: Response) =>
+  res.status(200).json(new Date().toLocaleString())
+);
 app
   .listen(port, () => {
     console.log(`Server is listening on port ${port}`);
