@@ -75,7 +75,7 @@ export default class LoanController {
       const loans = await getLoans.execute();
       res.status(200).json({ loans });
     } catch (error: any) {
-      res.status(400).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
   }
 }

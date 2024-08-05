@@ -1,5 +1,5 @@
 import { Router } from "express";
-import LoanController from "../controllers/loanController";
+import LoanController from "../controllers/LoanController";
 
 const router = Router();
 router.post("/simulate", LoanController.Simulate);
