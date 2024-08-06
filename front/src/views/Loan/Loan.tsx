@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import LoanForm from '../../components/LoanForm/LoanForm';
 import { SimulateLoanInput } from '../../models/SimulateLoanInput';
