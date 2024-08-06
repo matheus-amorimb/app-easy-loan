@@ -55,11 +55,11 @@ const LoanForm: React.FC<LoanFormProps> = ({
         total: simulateLoanData.total,
         monthlyInstallment: simulateLoanData.monthlyInstallment,
       };
-      // const response = await axios.post<any>(requestUrl, applyForLoan, {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      // });
+      const response = await axios.post<any>(requestUrl, applyForLoan, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       setModalIsOpen(true);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
