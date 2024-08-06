@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import loanRouter from "./ui/routes/LoanRoutes";
 import cors from "cors";
-import * as https from "https";
 
 dotenv.config();
 
@@ -21,16 +20,7 @@ app.use(`/${API_VERSION}/timestamp`, (req: Request, res: Response) =>
   res.status(200).json(new Date().toLocaleString())
 );
 
-// app
-//   .listen(port, () => {
-//     console.log(`Server is listening on port ${port}`);
-//   })
-//   .on("error", (err) => {
-//     console.error("Error starting server:", err);
-//   });
-
-https
-  .createServer(app)
+app
   .listen(port, () => {
     console.log(`Server is listening on port ${port}`);
   })
