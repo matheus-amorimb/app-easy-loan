@@ -9,7 +9,6 @@ export default class GetLoans implements UseCase {
   async execute(): Promise<GetLoanOutput[]> {
     const loans = await this.loanRepository.getAll();
     if (!loans) return [];
-    console.log(loans);
     return loans.map((loan) => {
       return {
         id: loan.id,
