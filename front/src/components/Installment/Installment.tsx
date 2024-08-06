@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ApplyForLoanInput from '../../models/ApplyForLoanInput';
 import Modal from 'react-modal';
-const apiURL = import.meta.env.VITE_API_URL;
+const apiURL = 'http://18.231.175.178:3000/v1';
 
 interface LoanFormProps {
   simulateLoanInput: SimulateLoanInput;
@@ -60,6 +60,7 @@ const LoanForm: React.FC<LoanFormProps> = ({
           'Content-Type': 'application/json',
         },
       });
+      response.data;
       setModalIsOpen(true);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {

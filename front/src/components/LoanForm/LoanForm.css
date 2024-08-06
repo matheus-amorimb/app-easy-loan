@@ -23,6 +23,13 @@
   position: relative;
 }
 
+.loan-form input:focus,
+.loan-form select:focus {
+  border-color: var(--simulate-button-color);
+  border-width: 2px;
+  outline: none;
+}
+
 .loan-form select {
   background-color: var(--box-background-color);
   appearance: none;
