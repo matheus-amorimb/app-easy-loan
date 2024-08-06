@@ -1,68 +1,122 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --page-background-color: #f6f6f6;
+  --box-background-color: #ffffff;
+  --box-shadow-color: #ececec;
+  --table-line-color: #c4c4c4;
+  --simulate-button: #f3a126;
+  --apply-button: #21AE1E;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --h1-color: #8f99a6;
+  --h2-color: #333333;
+  --h3-color: #737373;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --prototype-width-px: 1349px;
+  --prototype-height-px: 2000px;
+  --prototype-width-value: 1349px;
+  --prototype-height-value: 2000px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  margin: 0;
+  padding: 0;
+  line-height: calc(1em + 0.5rem);
+  box-sizing: border-box;
 }
-a:hover {
-  color: #535bf2;
+
+html,
+body {
+  height: 100% !important;
+  background-color: var(--page-background-color);
+  font-size: 8px;
+  font-family: 'Open Sans', sans-serif;
+  scroll-behavior: smooth;
+  position: relative;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  max-width: 1349px;
+  max-height: 2000px;
+  margin: 0 auto;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: var(--h1-color);
+  font-weight: 300;
+  line-height: 68.09px;
+  font-size: 50px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h2 {
+  color: var(--h2-color);
+  font-weight: 700;
+  line-height: 27.24px;
+  font-size: 20px;
+  text-align: start;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+h3 {
+  color: var(--h3-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 19.07px;
+  text-align: start;
+  font-size: 14px;
+}
+
+button{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 21.79px;
+  border-radius: 6px;
+  border-color: transparent;
+  box-shadow: 0px 4px 4px 0px #878787;
+  letter-spacing: 7%
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+@media (min-width: 375px) {
+  .container {
+    max-width: calc(375px * (967 / var(--prototype-width-value)));
   }
 }
+
+@media (min-width: 475px) {
+  .container {
+    max-width: calc(475px * (967 / var(--prototype-width-value)));
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: calc(640px * (967 / var(--prototype-width-value)));
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 967px;
+  }
+}
+
+/* @media (min-width: 1024px) {
+  .container {
+    max-width: calc(1024px * (967 / var(--prototype-width-value)));
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: calc(1280px * (967 / var(--prototype-width-value)));
+  }
+} */
