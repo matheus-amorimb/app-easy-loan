@@ -1,0 +1,152 @@
+.loan-simulation-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.loan-simulation {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 5px;
+  border-radius: 5px;
+  background-color: var(--box-background-color);
+  box-shadow: var(--box-shadow-color);
+}
+
+.loan-information-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-bottom: 4rem;
+}
+
+.loan-information-container div {
+  margin-right: 4rem;
+  margin-bottom: 4rem;
+}
+
+.loan-information-col-1,
+.loan-information-col-2,
+.loan-information-col-3 {
+  margin-right: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+.installments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  overflow: auto;
+  margin-bottom: 6rem;
+}
+
+.installments-container h3 {
+  margin-bottom: 4rem;
+}
+
+.installments-table {
+  border-radius: 5px;
+  border-collapse: collapse;
+  width: 100%;
+  overflow: hidden;
+}
+
+.installment-row {
+  border-bottom: 1px solid var(--table-line-color);
+}
+
+.installment-row th {
+  text-transform: uppercase;
+  text-align: start;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--h2-color);
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+}
+
+.installment-row td {
+  text-align: start;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--h2-color);
+  line-height: 21.79px;
+  padding: 2rem 4rem 2rem 0rem;
+}
+
+.applyForLoan {
+  padding: 1rem 0;
+  width: 100%;
+  margin: 0 auto;
+  color: var(--box-background-color);
+  background-color: var(--apply-button);
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.applyForLoan:hover {
+  opacity: 90%;
+}
+
+.custom-button .active {
+  background-color: red;
+  z-index: 2;
+}
+
+@media (min-width: 475px) {
+  .loan-simulation {
+    padding: 5rem;
+  }
+
+  .loan-information-container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 640px) {
+  .loan-information-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .loan-information-container {
+    padding-right: 15rem;
+  }
+
+  .installment-row td {
+    min-width: 15rem;
+  }
+
+  .applyForLoan {
+    width: 60%;
+  }
+}
+
+@media (min-width: 850px) {
+  .loan-information-container {
+    padding-right: 30rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .loan-information-container {
+    padding-right: 10rem;
+  }
+}
+
+@media (min-width: 1280px) {
+}
+
+@media (min-width: 1536px) {
+}
