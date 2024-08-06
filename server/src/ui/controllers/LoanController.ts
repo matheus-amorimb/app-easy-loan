@@ -37,7 +37,7 @@ export default class LoanController {
         monthlyInstallment: input.monthlyInstallment,
       };
       const installments = await simulateLoan.execute(simulateLoanInput);
-      res.status(201).json({ installments });
+      res.status(201).json(installments);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
     }
