@@ -4,7 +4,9 @@
   --box-shadow-color: #ececec;
   --table-line-color: #c4c4c4;
   --simulate-button: #f3a126;
-  --apply-button: #21AE1E;
+  --apply-button-color: #21AE1E;
+  --apply-button-disabled-color: #1a8a14;
+  --simulate-button-color: #f3a126;
 
   --h1-color: #8f99a6;
   --h2-color: #333333;
@@ -85,6 +87,18 @@ button{
   position: relative;
 }
 
+.main-box {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 5px;
+  border-radius: 5px;
+  background-color: var(--box-background-color);
+  box-shadow: var(--box-shadow-color);
+  margin-bottom: 10rem;
+}
+
 @media (min-width: 375px) {
   .container {
     max-width: calc(375px * (967 / var(--prototype-width-value)));
@@ -95,6 +109,11 @@ button{
   .container {
     max-width: calc(475px * (967 / var(--prototype-width-value)));
   }
+
+  .main-box {
+    padding: 5rem;
+  }
+
 }
 
 @media (min-width: 640px) {
