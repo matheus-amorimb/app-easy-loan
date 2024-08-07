@@ -17,6 +17,7 @@ function Loan() {
   const getLoans = async () => {
     try {
       const response = await axiosInstance.get('/loans/all');
+      // const installments = await axiosInstance.get('/loans/all');
       setLoans(response.data);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
@@ -59,8 +60,8 @@ function Loan() {
                 <h2>{formatToCurrency(parseFloat(loan.monthlyInstallment))}</h2>
               </div>
               <div>
-                <h3>total de parcelas</h3>
-                <h2>{loans.length} parcelas</h2>
+                {/* <h3>total de parcelas</h3> */}
+                {/* <h2>{loan.length} parcelas</h2> */}
               </div>
               <></>
             </div>
