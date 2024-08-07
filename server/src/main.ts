@@ -24,7 +24,6 @@ app.use(`/${API_VERSION}/health`, (req: Request, res: Response) =>
 app.use(`/${API_VERSION}/timestamp`, (req: Request, res: Response) =>
   res.status(200).json(new Date().toLocaleString())
 );
-
 app
   .listen(port, () => {
     console.log(`Server is listening on port ${port}`);

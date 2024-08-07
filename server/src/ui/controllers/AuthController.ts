@@ -15,7 +15,7 @@ const connection: DatabaseConnection = new DatabaseConnection();
 const userRepository: IUserRepository = new UserRepository(connection);
 
 export default class AuthController {
-  static async SignUp(req: Request, res: Response): Promise<void> {
+  static async signUp(req: Request, res: Response): Promise<void> {
     const input = plainToInstance(SignUpInputClass, req.body);
     const errors = await validate(input);
     if (errors.length > 0) {
@@ -40,7 +40,7 @@ export default class AuthController {
     }
   }
 
-  static async SignIn(req: Request, res: Response): Promise<void> {
+  static async signIn(req: Request, res: Response): Promise<void> {
     const input = plainToInstance(SignInInputClass, req.body);
     const errors = await validate(input);
     if (errors.length > 0) {

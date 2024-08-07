@@ -4,7 +4,6 @@ import SimulateLoanInput from "../../dtos/loan/SimulateLoanInput";
 import SimulateLoanOutput from "../../dtos/loan/SimulateLoanOutput";
 import UseCase from "./../UseCase";
 import UserRepository from "../../../infrastructure/repositories/UserRepository";
-import User from "../../../domain/entities/User";
 
 export default class SimulateLoan implements UseCase {
   constructor(readonly userRepository: UserRepository) {}

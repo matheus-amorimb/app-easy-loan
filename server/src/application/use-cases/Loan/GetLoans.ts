@@ -1,5 +1,4 @@
 import { Loan } from "../../../domain/entities/Loan";
-import Birthdate from "../../../domain/value-objects/Birthdate";
 import GetLoanOutput from "../../dtos/loan/GetLoanOutput";
 import ILoanRepository from "../../repositories/ILoanRepository";
 import IUserRepository from "../../repositories/IUserRepository";

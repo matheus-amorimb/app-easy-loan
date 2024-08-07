@@ -1,5 +1,4 @@
 import { Loan } from "../../../domain/entities/Loan";
-import User from "../../../domain/entities/User";
 import CalculateInstallements from "../../../domain/services/CalculateInstallments";
 import ApplyForLoanInput from "../../dtos/loan/ApplyForLoanInput";
 import ApplyForLoanOutput from "../../dtos/loan/ApplyForLoanOutput";

@@ -7,7 +7,7 @@ import {
   MinLength,
 } from "class-validator";
 
-export interface signUpInput {
+export interface SignUpInput {
   fullName: string;
   email: string;
   cpf: string;

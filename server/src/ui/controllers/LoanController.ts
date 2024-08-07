@@ -23,7 +23,7 @@ const installmentRepository: IInstallmentRepository = new InstallmentRepository(
 const userRepository: IUserRepository = new UserRepository(connection);
 
 export default class LoanController {
-  static async Simulate(req: Request, res: Response): Promise<void> {
+  static async simulate(req: Request, res: Response): Promise<void> {
     const input = plainToInstance(SimulateLoanInputClass, req.body);
     const errors = await validate(input);
     if (errors.length > 0) {
@@ -44,7 +44,7 @@ export default class LoanController {
     }
   }
 
-  static async Apply(req: Request, res: Response): Promise<void> {
+  static async apply(req: Request, res: Response): Promise<void> {
     const input = plainToInstance(ApplyForLoanInputClass, req.body);
     const errors = await validate(input);
     if (errors.length > 0) {
@@ -69,7 +69,7 @@ export default class LoanController {
     }
   }
 
-  static async All(req: Request, res: Response): Promise<void> {
+  static async all(req: Request, res: Response): Promise<void> {
     const getLoans = new GetLoans(userRepository, loanRepository);
     try {
       const loans = await getLoans.execute(res.locals.user.email);

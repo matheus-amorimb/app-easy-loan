@@ -2,7 +2,6 @@ import GetLoanInput from "../../dtos/loan/GetLoanInput";
 import GetLoanOutput from "../../dtos/loan/GetLoanOutput";
 import ILoanRepository from "../../repositories/ILoanRepository";
 import UseCase from "./../UseCase";
-import Birthdate from "../../../domain/value-objects/Birthdate";
 
 export default class GetLoan implements UseCase {
   constructor(readonly loanRepository: ILoanRepository) {}

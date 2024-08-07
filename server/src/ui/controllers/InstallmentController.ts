@@ -25,7 +25,7 @@ const installmentRepository: IInstallmentRepository = new InstallmentRepository(
 const userRepository: IUserRepository = new UserRepository(connection);
 
 export default class LoanController {
-  static async Get(req: Request, res: Response): Promise<void> {
+  static async get(req: Request, res: Response): Promise<void> {
     const loanId = req.params.id;
     const input = plainToInstance(GetInstallmentsInputClass, { loanId });
     const errors = await validate(input);

@@ -3,7 +3,7 @@ import { addMonthsToDate } from "../utils/AddMonthsToDate";
 import LoanBuilder from "../utils/LoanBuilder";
 
 test("Should calculate installments for a loan", function () {
-  const loan = LoanBuilder.New().Build();
+  const loan = LoanBuilder.new().build();
   const installments = CalculateInstallments.calculate(loan);
 
   expect(installments).toBeDefined();

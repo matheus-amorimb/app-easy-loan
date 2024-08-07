@@ -1,5 +1,5 @@
 import User from "../../../domain/entities/User";
-import { signUpInput } from "../../dtos/auth/SignUpInput";
+import { SignUpInput } from "../../dtos/auth/SignUpInput";
 import { SignUpOutput } from "../../dtos/auth/SignUpOutput";
 import IUserRepository from "../../repositories/IUserRepository";
 import UseCase from "../UseCase";
@@ -9,7 +9,7 @@ import config from "../../../../config";
 export default class SignUp implements UseCase {
   constructor(readonly userRepository: IUserRepository) {}
 
-  async execute(input: signUpInput): Promise<SignUpOutput> {
+  async execute(input: SignUpInput): Promise<SignUpOutput> {
     if (input.password !== input.confirmPassword)
       throw new Error("Passwords do not match.");
 

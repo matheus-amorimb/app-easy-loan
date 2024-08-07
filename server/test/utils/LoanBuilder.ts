@@ -9,35 +9,34 @@ export default class LoanBuilder {
   total: number = 60000;
   monthlyInstallment: number = 15000;
 
-  static New(): LoanBuilder {
+  static new(): LoanBuilder {
     return new LoanBuilder();
   }
 
-  public WithFederativeUnit(value: FederativeUnit): LoanBuilder {
+  public withFederativeUnit(value: FederativeUnit): LoanBuilder {
     this.userUf = value;
     return this;
   }
 
-  public WithUserBirthDate(userBirthdate: Date): LoanBuilder {
+  public withUserBirthDate(userBirthdate: Date): LoanBuilder {
     this.userBirthdate = userBirthdate;
     return this;
   }
 
-  public WithTotal(value: number): LoanBuilder {
+  public withTotal(value: number): LoanBuilder {
     this.total = value;
     return this;
   }
 
-  public WithMonthlyInstallment(value: number): LoanBuilder {
+  public withMonthlyInstallment(value: number): LoanBuilder {
     this.monthlyInstallment = value;
     return this;
   }
 
-  public Build() {
+  public build() {
     return Loan.create(
       this.userCpf,
       this.userUf,
-      this.userBirthdate,
       this.total,
       this.monthlyInstallment
     );
