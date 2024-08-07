@@ -27,7 +27,6 @@ export default class UserRepository implements IUserRepository {
       [email]
     );
     if (!user) return;
-    console.log(user);
     return User.restore(
       user?.id,
       user?.full_name,
