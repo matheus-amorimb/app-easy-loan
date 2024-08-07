@@ -1,0 +1,88 @@
+.loan-form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.loan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.loan-form input,
+.loan-form select {
+  font-weight: 400;
+  line-height: 24.51px;
+  color: #737373;
+  font-size: 20px;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d4d4d4;
+  height: 60px;
+  position: relative;
+}
+
+.loan-form input:focus,
+.loan-form select:focus {
+  border-color: var(--simulate-button-color);
+  border-width: 2px;
+  outline: none;
+}
+
+.loan-form select {
+  background-color: var(--box-background-color);
+  appearance: none;
+  position: relative;
+}
+
+.loan-form select option {
+  background-color: var(--page-background-color);
+}
+
+.form-error-message {
+  color: red;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.simulate-button {
+  background-color: var(--simulate-button-color);
+  color: var(--box-background-color);
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+  padding: 1rem 0.4rem;
+  margin-top: 4rem;
+  height: 44px;
+}
+
+.simulate-button:hover {
+  opacity: 90%;
+  cursor: pointer;
+}
+
+@media (min-width: 475px) {
+  .loan-form input,
+  .loan-form select {
+    padding: 2rem 3rem;
+    font-size: 16px;
+  }
+
+  .loan-form select {
+    font-size: 18px;
+  }
+
+  .form-error-message {
+    color: red;
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .loan-form input {
+    font-size: 20px;
+  }
+}
