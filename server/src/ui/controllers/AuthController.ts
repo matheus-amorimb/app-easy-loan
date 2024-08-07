@@ -1,5 +1,5 @@
-import { plainToInstance, Type } from "class-transformer";
-import { IsEmail, IsNotEmpty, validate } from "class-validator";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
 import { Request, Response } from "express";
 import { formatErrorMessage } from "../utils/FormatErrorMessage";
 import DatabaseConnection from "../../infrastructure/database/DatabaseConnection";
@@ -8,7 +8,6 @@ import { SignUpInputClass } from "../../application/dtos/auth/SignUpInput";
 import { SignUpOutput } from "../../application/dtos/auth/SignUpOutput";
 import IUserRepository from "../../application/repositories/IUserRepository";
 import UserRepository from "../../infrastructure/repositories/UserRepository";
-import Password from "../../domain/value-objects/Password";
 import SignIn from "../../application/use-cases/User/SignIn";
 import { SignInInputClass } from "../../application/dtos/auth/SIgnInInput";
 

@@ -5,11 +5,12 @@ import loanRouter from "./ui/routes/LoanRoutes";
 import authRouter from "./ui/routes/AuthRoutes";
 import installmentRouter from "./ui/routes/InstallmentRoutes";
 import cors from "cors";
+import config from "../config";
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = config.PORT || 3000;
 const API_VERSION = "v2";
 
 app.use(cors());

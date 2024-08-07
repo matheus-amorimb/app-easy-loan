@@ -1,14 +1,12 @@
 import pgp, { IDatabase } from "pg-promise";
-import dotenv from "dotenv";
 import { IClient } from "pg-promise/typescript/pg-subset";
-
-dotenv.config();
+import config from "../../../config";
 
 export default class DatabaseConnection {
   connection: IDatabase<any, IClient>;
 
   constructor() {
-    const databaseUrl = process.env.DATABASE_URL;
+    const databaseUrl = config.DATABASE_URL;
     if (!databaseUrl) {
       throw new Error("DATABASE_URL environment variable is not defined");
     }

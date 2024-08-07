@@ -4,10 +4,7 @@ import { SignUpOutput } from "../../dtos/auth/SignUpOutput";
 import IUserRepository from "../../repositories/IUserRepository";
 import UseCase from "../UseCase";
 import jwt from "jsonwebtoken";
-
-const JWT_SECRET =
-  process.env.JWT_SECRET ||
-  "L2qG5x7D9fJb3V@8eP9jT2mU!wX&3RzQ%1pHkL0Y6vN5oK4sJxA7eB@8yW2hS";
+import config from "../../../../config";
 
 export default class SignUp implements UseCase {
   constructor(readonly userRepository: IUserRepository) {}
@@ -33,11 +30,13 @@ export default class SignUp implements UseCase {
 
     await this.userRepository.save(user);
 
+    if (!config.JWT_SECRET) throw new Error("JWT Secret not defined");
+
     const token = jwt.sign(
       {
         email: user.email,
       },
-      JWT_SECRET,
+      config.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
