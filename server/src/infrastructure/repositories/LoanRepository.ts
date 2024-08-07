@@ -41,7 +41,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async getByUser(cpf: string): Promise<Loan[] | undefined> {
     const loans = await this.connection.query(
-      "SELECT * FROM easyloan.loan WHERE user_cpf = $1",
+      "SELECT * FROM easyloan.loan WHERE user_cpf = $1 ORDER BY date DESC",
       [cpf]
     );
     return loans?.map((loan: any) => {

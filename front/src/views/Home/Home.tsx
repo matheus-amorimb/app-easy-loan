@@ -17,7 +17,9 @@ function Home() {
     <>
       <header className="container header">
         {' '}
-        <img src={logo} alt="" />
+        <a href="/home">
+          <img src={logo} alt="" />
+        </a>
         <a href="/loans">Meu empréstimos</a>
       </header>
       <h1 className="title container">Simule e solicite o seu empréstimo.</h1>

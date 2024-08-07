@@ -13,7 +13,6 @@ import {
 function Loan() {
   const [loans, setLoans] = useState<GetLoansOutput[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [totalInterest, setTotalInterest] = useState<number>(0);
 
   const getLoans = async () => {
     try {
@@ -33,7 +32,9 @@ function Loan() {
     <>
       <header className="container header">
         {' '}
-        <img src={logo} alt="" />
+        <a href="/home">
+          <img src={logo} alt="" />
+        </a>
         <a href="/home">Início</a>
       </header>
       <div className="container">
