@@ -1,13 +1,19 @@
 
 <h2 align="center" style="color:007BFF;">
-  Web Application para simulação de empréstimo para pessoa física
+	Web Application para simulação de empréstimo para pessoa física
 </h2>
 
 <p align="center">
 	<img src="./screenshot/loan-form.png" alt="" />
 	<img src="./screenshot/installments.png" alt="" />
-	<img src="./screenshot/loan-form-mobile.png" alt="" />
-	<img src="./screenshot/intallments-mobile.png" alt="" />
+</p>
+
+<p align="center">
+	<img src="./screenshot/loan-form-mobile.png" alt=""/>
+	<img src="./screenshot/installments-mobile.png" alt="" />
+</p>
+
+<p align="center">
 	<a href="http://18.231.175.178:5173/">Abrir aplicação</a>
 </p>
 
@@ -76,8 +82,7 @@ Esta é uma aplicação full stack desenvolvida para simular empréstimos pessoa
 
 **Método**: `GET`
 
-**Request Body:** N/A
-
+**Response:**
 ```json
 [
   {
