@@ -1,0 +1,97 @@
+.signin-main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 90%;
+  height: 70%;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-color);
+}
+
+.form-container h2 {
+  font-size: 5rem;
+  font-weight: bolder;
+  color: var(--accent-color);
+  margin-bottom: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 5rem;
+  width: 80%;
+  height: 60%;
+}
+
+.form-container input,
+.form-container button {
+  font-size: 2.5rem;
+  height: 12%;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+}
+
+.form-container input {
+  font-size: 2rem;
+  padding-left: 2rem;
+  color: #737373;
+}
+
+.form-container input:focus {
+  border-color: var(--accent-color);
+  border-width: 2px;
+  outline: none;
+}
+
+.form-container button {
+  text-transform: capitalize;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container span {
+  font-size: 1.5rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+
+.form-container a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.signin-form .form-error-message {
+  color: red;
+  font-size: 1.6rem;
+  padding-top: -2rem;
+  padding-bottom: -1rem;
+}
+
+@media (min-width: 768px) {
+  .form-container {
+    width: 60%;
+  }
+
+  .form-container form {
+    width: 60%;
+  }
+}
