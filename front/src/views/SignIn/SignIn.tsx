@@ -15,7 +15,6 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const onSubmitHandler: SubmitHandler<SignInInput> = (data: SignInInput) => {
-    console.log(data);
     signIn(data, () => navigate('/home'));
   };
   return (

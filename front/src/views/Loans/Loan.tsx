@@ -19,7 +19,6 @@ function Loan() {
     try {
       const response = await axiosInstance.get('/loans/all');
       setLoans(response.data);
-      console.log(response.data);
       await new Promise((resolve) => setTimeout(resolve, 2000));
     } catch (error) {
       setError('Erro ao buscar o seus empréstimos.');

@@ -19,7 +19,6 @@ export function useLoan(simulateLoanData: SimulateLoanInput) {
     setIsLoading(true);
     setError(null);
     try {
-      console.log(simulateLoanData);
       const response = await axiosInstance.post<Installment[]>(
         '/loans/simulate',
         simulateLoanData,
@@ -29,7 +28,6 @@ export function useLoan(simulateLoanData: SimulateLoanInput) {
           },
         },
       );
-      console.log(response.data);
       setInterest(
         (
           (response.data[0].interest * 100) /
@@ -43,7 +41,6 @@ export function useLoan(simulateLoanData: SimulateLoanInput) {
       setInstallments(response.data);
       setTotalInterest(totalInterest);
     } catch (error) {
-      console.log(error);
       setError(
         'Houve um problema para calcular suas parcelas. Favor tentar novamente.',
       );

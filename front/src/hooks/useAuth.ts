@@ -24,7 +24,6 @@ const useAuth = () => {
       onSucess();
     } catch (error) {
       if (!error) return;
-      console.log(error);
       setAuthError(displayLogInMessage(error?.response?.data?.error));
     } finally {
       setLoading(false);
@@ -35,7 +34,6 @@ const useAuth = () => {
     setLoading(true);
     setAuthError(null);
     try {
-      console.log(data);
       const response = await axios.post<SignUpOutput>(
         `${apiURL}/auth/signup`,
         data,
@@ -44,7 +42,6 @@ const useAuth = () => {
       localStorage.setItem('token', tokenJwt);
       onSucess();
     } catch (error) {
-      console.log(error);
       setAuthError(displaySignUpMessage(error.response.data.error));
     } finally {
       setLoading(false);

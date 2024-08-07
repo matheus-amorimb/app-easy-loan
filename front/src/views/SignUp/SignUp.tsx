@@ -52,7 +52,6 @@ const SignUp = () => {
               required: 'Nome completo é obrigatório.',
               validate: (data) => {
                 if (data.split(' ').length === 1) {
-                  console.log('data.split(');
                   return 'Favor preenche nome completo.';
                 }
               },
