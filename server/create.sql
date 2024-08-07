@@ -1,8 +1,8 @@
-DROP SCHEMA IF EXISTS easyloan CASCADE;
+DROP SCHEMA IF EXISTS appeasyloan CASCADE;
 
-CREATE SCHEMA easyloan;
+CREATE SCHEMA appeasyloan;
 
-CREATE TABLE easyloan.loan (
+CREATE TABLE appeasyloan.loan (
   id UUID PRIMARY KEY,
   user_cpf TEXT NOT NULL,
   user_uf TEXT NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE easyloan.loan (
   date TIMESTAMP
 );
 
-CREATE TABLE easyloan.installment (
+CREATE TABLE appeasyloan.installment (
   id UUID PRIMARY KEY,
   loan_id UUID,
   number NUMERIC NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE easyloan.installment (
   due_date TIMESTAMP
 );
 
-CREATE TABLE easyloan.user (
+CREATE TABLE appeasyloan.user (
   id UUID PRIMARY KEY,
   full_name TEXT NOT NULL,
   email TEXT NOT NULL,
