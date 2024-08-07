@@ -1,88 +1,33 @@
 import './Installment.css';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { Installment } from '../../models/Installment';
 import { SimulateLoanInput } from '../../models/SimulateLoanInput';
-import { ICMS } from '../../enums/ICMS.enum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faTimes } from '@fortawesome/free-solid-svg-icons';
-import ApplyForLoanInput from '../../models/ApplyForLoanInput';
 import Modal from 'react-modal';
+import {
+  FormatToCurrency,
+  getICMSValue,
+  FormatDateToDDMMYY,
+} from '../../utils/InstallmentUtils';
+import { useLoan } from '../../hooks/useLoan';
 
-const apiURL = 'http://18.231.175.178:3000/v1';
-
-interface LoanFormProps {
-  simulateLoanInput: SimulateLoanInput;
-}
-
-const LoanForm: React.FC<LoanFormProps> = ({
-  simulateLoanInput: simulateLoanData,
+const LoanForm: React.FC<{ simulateLoanInput: SimulateLoanInput }> = ({
+  simulateLoanInput,
 }) => {
-  const [installments, setInstallments] = useState<Installment[]>([]);
-  const [totalInterest, setTotalInterest] = useState<number>(0);
-  const [shouldDisplayInstallments, setShouldDisplayInstallments] =
-    useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const getInstallments = async (url: string) => {
-    try {
-      const response = await axios.post<Installment[]>(url, simulateLoanData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const totalInterest = response?.data.reduce(
-        (acc, installment) => acc + installment.interest,
-        0,
-      );
-      setShouldDisplayInstallments(true);
-      setTotalInterest(totalInterest);
-      setInstallments(response?.data);
-    } catch (error) {
-      setShouldDisplayInstallments(false);
-      console.error('Error fetching installments:', error);
-    }
-  };
-
-  const submitLoan = async () => {
-    setIsLoading(true);
-    try {
-      const requestUrl = `${apiURL}/loans/apply`;
-      const applyForLoan: ApplyForLoanInput = {
-        userCpf: simulateLoanData.userCpf,
-        userUf: simulateLoanData.userUf,
-        userBirthdate: new Date(simulateLoanData.userBirthdate),
-        total: simulateLoanData.total,
-        monthlyInstallment: simulateLoanData.monthlyInstallment,
-      };
-      const response = await axios.post<any>(requestUrl, applyForLoan, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      response.data;
-      setModalIsOpen(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-    } catch (error) {
-      console.error('Error fetching installments:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    const requestUrl = `${apiURL}/loans/simulate`;
-    getInstallments(requestUrl);
-  }, [simulateLoanData]);
+  const {
+    installments,
+    totalInterest,
+    isLoading,
+    error,
+    modalIsOpen,
+    setModalIsOpen,
+    shouldDisplayInstallments,
+    submitLoan,
+  } = useLoan(simulateLoanInput);
 
   return (
     <main className="container">
-      {!shouldDisplayInstallments && (
-        <h2 className="loan-simulation-header">
-          Houve um problema para realizar sua simulação. Tente novamente.
-        </h2>
-      )}
+      {error && <h2 className="loan-simulation-header">{error}</h2>}
       {shouldDisplayInstallments && (
         <>
           <h2 className="loan-simulation-header">
@@ -93,7 +38,7 @@ const LoanForm: React.FC<LoanFormProps> = ({
               <div className="loan-information-col-1">
                 <div>
                   <h3>valor requerido</h3>
-                  <h2>{FormatToCurrency(simulateLoanData?.total)}</h2>
+                  <h2>{FormatToCurrency(simulateLoanInput?.total)}</h2>
                 </div>
                 <div>
                   <h3>total de meses para quitar</h3>
@@ -103,7 +48,7 @@ const LoanForm: React.FC<LoanFormProps> = ({
               <div className="loan-information-col-2">
                 <div>
                   <h3>taxa de juros</h3>
-                  <h2>{getICMSValue(simulateLoanData?.userUf)}% ao mês</h2>
+                  <h2>{getICMSValue(simulateLoanInput?.userUf)}% ao mês</h2>
                 </div>
                 <div>
                   <h3>total de juros</h3>
@@ -114,13 +59,13 @@ const LoanForm: React.FC<LoanFormProps> = ({
                 <div>
                   <h3>valor que deseja pagar por mês</h3>
                   <h2>
-                    {FormatToCurrency(simulateLoanData?.monthlyInstallment)}
+                    {FormatToCurrency(simulateLoanInput?.monthlyInstallment)}
                   </h2>
                 </div>
                 <div>
                   <h3>total a pagar</h3>
                   <h2>
-                    {FormatToCurrency(simulateLoanData?.total + totalInterest)}
+                    {FormatToCurrency(simulateLoanInput?.total + totalInterest)}
                   </h2>
                 </div>
               </div>
@@ -190,27 +135,5 @@ const LoanForm: React.FC<LoanFormProps> = ({
     </main>
   );
 };
-
-function FormatDateToDDMMYY(date: string): string {
-  const rawDate = new Date(date);
-  const day = rawDate.getDate().toString().padStart(2, '0');
-  const month = (rawDate.getMonth() + 1).toString().padStart(2, '0');
-  const year = rawDate.getUTCFullYear();
-  const shortYear = year % 100;
-
-  return `${day}/${month}/${shortYear}`;
-}
-
-function FormatToCurrency(input: number): string {
-  const currency = input.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
-  return currency;
-}
-
-function getICMSValue(key: string): string | undefined {
-  return ICMS[key as keyof typeof ICMS];
-}
 
 export default LoanForm;
