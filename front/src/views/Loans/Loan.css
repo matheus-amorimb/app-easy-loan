@@ -1,0 +1,83 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  text-align: right;
+  font-weight: 700;
+  font-size: 2.2rem;
+  padding: 4rem;
+  padding-right: 2rem;
+  background-color: #3f51b5;
+  margin-bottom: 10rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.header a:hover {
+  opacity: 80%;
+}
+
+.header img {
+  max-width: 6rem;
+  max-height: 6rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 40px;
+  line-height: 45px;
+  margin-top: 8rem;
+  margin-bottom: 10rem;
+}
+
+.loans-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  padding: 1rem;
+  border: 5px;
+  border-radius: 10px;
+  background-color: var(--box-background-color);
+  box-shadow: var(--box-shadow-color);
+}
+
+.loan-card {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4rem;
+}
+
+.loan-card h3 {
+  color: var(--accent-color);
+}
+
+.loan-card h2 {
+  color: #3d3d3d;
+}
+
+@media (min-width: 475px) {
+  .title {
+    font-size: 50px;
+    line-height: 68.09px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 10rem;
+  }
+
+  .loan-card {
+    padding: 4rem;
+    justify-content: start;
+    align-items: center;
+    gap: 8rem;
+  }
+}
