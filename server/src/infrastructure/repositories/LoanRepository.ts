@@ -16,7 +16,6 @@ export default class LoanRepository implements ILoanRepository {
         loan.id,
         loan.user_cpf,
         loan.user_uf,
-        loan.user_birthdate,
         parseFloat(loan.total),
         parseFloat(loan.monthly_installment),
         loan.date
@@ -34,21 +33,36 @@ export default class LoanRepository implements ILoanRepository {
       loan.id,
       loan.user_cpf,
       loan.user_uf,
-      loan.user_birthdate,
       parseFloat(loan.total),
       parseFloat(loan.monthly_installment),
       loan.date
     );
   }
 
+  async getByUser(cpf: string): Promise<Loan[] | undefined> {
+    const loans = await this.connection.query(
+      "SELECT * FROM easyloan.loan WHERE user_cpf = $1",
+      [cpf]
+    );
+    return loans?.map((loan: any) => {
+      return Loan.restore(
+        loan.id,
+        loan.user_cpf,
+        loan.user_uf,
+        parseFloat(loan.total),
+        parseFloat(loan.monthly_installment),
+        loan.date
+      );
+    });
+  }
+
   async save(loan: Loan) {
     await this.connection.query(
-      "INSERT INTO easyloan.loan (id, user_cpf, user_uf, user_birthdate, total, monthly_installment, date) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      "INSERT INTO easyloan.loan (id, user_cpf, user_uf, total, monthly_installment, date) VALUES ($1, $2, $3, $4, $5, $6)",
       [
         loan.id,
         loan.userCpf,
         loan.userUf,
-        loan.userBirthdate.value,
         loan.total,
         loan.monthlyInstallment,
         loan.date,

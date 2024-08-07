@@ -4,8 +4,8 @@ import MiddlewareController from "../controllers/MiddlewareController";
 import authMiddleware from "../middleware/AuthMiddleware";
 
 const router = Router();
-router.get("/signup", AuthController.SignUp);
+router.post("/signup", AuthController.SignUp);
 router.get("/signin", AuthController.SignIn);
-router.get("/teste", authMiddleware, MiddlewareController.test);
+// router.get("/teste", authMiddleware, MiddlewareController.test);
 
 export default router;

@@ -3,14 +3,12 @@ import Birthdate from "../value-objects/Birthdate";
 
 export class Loan {
   readonly userUf: FederativeUnit;
-  readonly userBirthdate: Birthdate;
   readonly interestRate: number = 0;
 
   constructor(
     readonly id: string,
     readonly userCpf: string,
     userUf: string,
-    userBirthdate: Date,
     readonly total: number,
     readonly monthlyInstallment: number,
     readonly date: Date
@@ -18,48 +16,29 @@ export class Loan {
     this.validateTotal(total);
     this.validateMonthlyInstallment(total, monthlyInstallment);
     this.userUf = this.validateFederativeUnit(userUf);
-    this.userBirthdate = new Birthdate(userBirthdate);
     this.interestRate = this.getInterestRate(userUf);
   }
 
   static create(
     userCpf: string,
     userUf: string,
-    userBirthdate: Date,
     total: number,
     monthlyInstallment: number
   ): Loan {
     const id = crypto.randomUUID();
     const date = new Date();
-    return new Loan(
-      id,
-      userCpf,
-      userUf,
-      userBirthdate,
-      total,
-      monthlyInstallment,
-      date
-    );
+    return new Loan(id, userCpf, userUf, total, monthlyInstallment, date);
   }
 
   static restore(
     id: string,
     userCpf: string,
     userUf: string,
-    userBirthdate: Date,
     total: number,
     monthlyInstallment: number,
     date: Date
   ): Loan {
-    return new Loan(
-      id,
-      userCpf,
-      userUf,
-      userBirthdate,
-      total,
-      monthlyInstallment,
-      date
-    );
+    return new Loan(id, userCpf, userUf, total, monthlyInstallment, date);
   }
 
   private validateTotal(total: number) {
@@ -68,10 +47,16 @@ export class Loan {
   }
 
   private validateMonthlyInstallment(total: number, monthlyValue: number) {
-    if (monthlyValue / total < 0.01)
+    if (monthlyValue / total < 0.015)
       throw new Error(
-        "The monthly installment for a loan must be equal to or greater than 0.01 of the total"
+        "The monthly installment for a loan must be equal to or greater than 0.015 of the total"
       );
+
+    if (monthlyValue / total < 0.01)
+      if (total > monthlyValue)
+        throw new Error(
+          "The monthly installment for a loan can not be greater than the loan"
+        );
   }
 
   private getInterestRate(uf: string): number {

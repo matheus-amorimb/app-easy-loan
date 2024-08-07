@@ -10,7 +10,6 @@ export default class UserRepository implements IUserRepository {
       "SELECT COUNT(*) FROM easyloan.user WHERE email = $1",
       [email]
     );
-    await this.connection.close();
     return result?.count !== "0";
   }
 
@@ -19,7 +18,6 @@ export default class UserRepository implements IUserRepository {
       "SELECT COUNT(*) FROM easyloan.user WHERE cpf = $1",
       [cpf]
     );
-    await this.connection.close();
     return result?.count !== "0";
   }
 
@@ -28,17 +26,16 @@ export default class UserRepository implements IUserRepository {
       "SELECT * FROM easyloan.user WHERE email = $1",
       [email]
     );
-    this.connection.close();
     if (!user) return;
     console.log(user);
     return User.restore(
-      user.id,
-      user.full_name,
-      user.cpf,
-      user.email,
-      user.password,
-      user.birthdate,
-      user.uf
+      user?.id,
+      user?.full_name,
+      user?.cpf,
+      user?.email,
+      user?.password,
+      new Date(user?.birthdate),
+      user?.uf
     );
   }
 
@@ -55,6 +52,5 @@ export default class UserRepository implements IUserRepository {
         user.uf,
       ]
     );
-    await this.connection.close();
   }
 }

@@ -1,7 +1,8 @@
-import GetInstallmentsInput from "../dtos/installment/GetInstallmentsInput";
-import GetInstallmentsOutput from "../dtos/installment/GetInstallmentsOutput";
-import IInstallmentRepository from "../repositories/IInstallmentRepository";
-import UseCase from "./UseCase";
+import Installment from "../../../domain/entities/Installment";
+import GetInstallmentsInput from "../../dtos/installment/GetInstallmentsInput";
+import GetInstallmentsOutput from "../../dtos/installment/GetInstallmentsOutput";
+import IInstallmentRepository from "../../repositories/IInstallmentRepository";
+import UseCase from "./../UseCase";
 
 export default class GetInstallments implements UseCase {
   constructor(readonly installmentRepository: IInstallmentRepository) {}
@@ -11,7 +12,7 @@ export default class GetInstallments implements UseCase {
       input.loanId
     );
     if (!installments) throw new Error("Installments not found for loan id.");
-    return installments.map((installment) => {
+    return installments.map((installment: Installment) => {
       return {
         id: installment.id,
         loanId: installment.loanId,

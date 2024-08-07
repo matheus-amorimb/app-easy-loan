@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import loanRouter from "./ui/routes/LoanRoutes";
 import authRouter from "./ui/routes/AuthRoutes";
+import installmentRouter from "./ui/routes/InstallmentRoutes";
 import cors from "cors";
-import authMiddleware from "./ui/middleware/AuthMiddleware";
 
 dotenv.config();
 
@@ -15,6 +15,7 @@ const API_VERSION = "v2";
 app.use(cors());
 app.use(bodyParser.json());
 app.use(`/${API_VERSION}/loans`, loanRouter);
+app.use(`/${API_VERSION}/installments`, installmentRouter);
 app.use(`/${API_VERSION}/auth`, authRouter);
 app.use(`/${API_VERSION}/health`, (req: Request, res: Response) =>
   res.status(200).json("Ok")

@@ -1,8 +1,8 @@
-import GetLoanInput from "../dtos/loan/GetLoanInput";
-import GetLoanOutput from "../dtos/loan/GetLoanOutput";
-import ILoanRepository from "../repositories/ILoanRepository";
-import UseCase from "./UseCase";
-import Birthdate from "../../domain/value-objects/Birthdate";
+import GetLoanInput from "../../dtos/loan/GetLoanInput";
+import GetLoanOutput from "../../dtos/loan/GetLoanOutput";
+import ILoanRepository from "../../repositories/ILoanRepository";
+import UseCase from "./../UseCase";
+import Birthdate from "../../../domain/value-objects/Birthdate";
 
 export default class GetLoan implements UseCase {
   constructor(readonly loanRepository: ILoanRepository) {}
@@ -12,9 +12,7 @@ export default class GetLoan implements UseCase {
     if (!loan) throw new Error("Loan not found");
     return {
       id: loan.id,
-      userCpf: loan.userCpf,
       userUf: loan.userUf,
-      userBirthdate: new Birthdate(loan.userBirthdate?.value),
       total: loan.total,
       monthlyInstallment: loan.monthlyInstallment,
       date: loan.date,

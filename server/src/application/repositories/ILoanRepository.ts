@@ -5,5 +5,6 @@ export default interface ILoanRepository {
   connection: DatabaseConnection;
   getAll(): Promise<Loan[]>;
   getById(loanId: string): Promise<Loan | undefined>;
+  getByUser(userCpf: string): Promise<Loan[] | undefined>;
   save(loan: Loan): Promise<void>;
 }

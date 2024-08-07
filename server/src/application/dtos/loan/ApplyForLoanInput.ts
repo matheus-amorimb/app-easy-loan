@@ -3,27 +3,12 @@ import { IsDate, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import "reflect-metadata";
 
 export default interface ApplyForLoanInput {
-  userCpf: string;
-  userUf: string;
-  userBirthdate: Date;
+  userEmail: string;
   total: number;
   monthlyInstallment: number;
 }
 
 export class ApplyForLoanInputClass {
-  @IsString()
-  @IsNotEmpty()
-  userCpf!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  userUf!: string;
-
-  @Type(() => Date)
-  @IsDate()
-  @IsNotEmpty()
-  userBirthdate!: Date;
-
   @Type(() => Number)
   @IsNumber()
   @IsNotEmpty()

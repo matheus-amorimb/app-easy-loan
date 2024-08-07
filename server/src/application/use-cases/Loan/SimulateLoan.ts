@@ -3,16 +3,24 @@ import CalculateInstallements from "../../../domain/services/CalculateInstallmen
 import SimulateLoanInput from "../../dtos/loan/SimulateLoanInput";
 import SimulateLoanOutput from "../../dtos/loan/SimulateLoanOutput";
 import UseCase from "./../UseCase";
+import UserRepository from "../../../infrastructure/repositories/UserRepository";
+import User from "../../../domain/entities/User";
 
 export default class SimulateLoan implements UseCase {
+  constructor(readonly userRepository: UserRepository) {}
+
   async execute(input: SimulateLoanInput): Promise<SimulateLoanOutput[]> {
+    const user = await this.userRepository.getByEmail(input.userEmail);
+
+    if (!user) throw new Error("User not found.");
+
     const loan = Loan.create(
-      input.userCpf,
-      input.userUf,
-      input.userBirthdate,
+      user.cpf,
+      user.uf,
       input.total,
       input.monthlyInstallment
     );
+
     const installments = CalculateInstallements.calculate(loan);
     return await installments.map((installment) => {
       return {

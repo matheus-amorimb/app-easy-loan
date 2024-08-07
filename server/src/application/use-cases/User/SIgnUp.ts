@@ -35,7 +35,7 @@ export default class SignUp implements UseCase {
 
     const token = jwt.sign(
       {
-        emai: user.email,
+        email: user.email,
       },
       JWT_SECRET,
       { expiresIn: "1h" }
