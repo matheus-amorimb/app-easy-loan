@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import ApplyForLoanInput from '../../models/ApplyForLoanInput';
 import Modal from 'react-modal';
+
 const apiURL = 'http://18.231.175.178:3000/v1';
 
 interface LoanFormProps {
