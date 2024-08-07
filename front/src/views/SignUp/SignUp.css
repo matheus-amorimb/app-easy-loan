@@ -1,0 +1,104 @@
+.signup-main {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container-signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 90%;
+  height: 70%;
+  background-color: var(--white-color);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-color);
+}
+
+.form-container-signup h2 {
+  font-size: 5rem;
+  font-weight: bolder;
+  color: var(--accent-color);
+  margin-bottom: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-align: center;
+}
+
+.form-container-signup form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
+  height: 60%;
+}
+
+.form-container-signup input,
+.form-container-signup select,
+.form-container-signup button {
+  font-size: 2.5rem;
+  height: 10%;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  /* margin-bottom: 4rem; */
+}
+
+.form-container-signup select{
+  background-color: var(--white-color);
+  appearance: none;
+}
+
+.form-container-signup select,
+.form-container-signup input {
+  font-size: 2rem;
+  padding-left: 2rem;
+  color: #737373;
+}
+
+.form-container-signup select:focus,
+.form-container-signup input:focus {
+  border-color: var(--accent-color);
+  border-width: 2px;
+  outline: none;
+}
+
+.form-container-signup button {
+  text-transform: capitalize;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container-signup span {
+  font-size: 1.5rem;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.form-container-signup a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.form-error-message {
+  color: red;
+  font-size: 1.2rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .form-container-signup {
+    width: 60%;
+  }
+
+  .form-container-signup form {
+    width: 60%;
+  }
+}
