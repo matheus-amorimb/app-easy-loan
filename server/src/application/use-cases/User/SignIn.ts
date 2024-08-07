@@ -1,4 +1,4 @@
-import { SignUpInput } from "../../dtos/auth/SIgnInInput";
+import { SignInInput } from "../../dtos/auth/SIgnInInput";
 import { SignInOutput } from "../../dtos/auth/SignInOutput";
 import IUserRepository from "../../repositories/IUserRepository";
 import UseCase from "../UseCase";
@@ -11,7 +11,7 @@ const JWT_SECRET =
 export default class SignIn implements UseCase {
   constructor(readonly userRepository: IUserRepository) {}
 
-  async execute(input: SignUpInput): Promise<SignInOutput> {
+  async execute(input: SignInInput): Promise<SignInOutput> {
     const user = await this.userRepository.getByEmail(input.email);
 
     if (!user) throw new Error("User not found.");
@@ -21,7 +21,7 @@ export default class SignIn implements UseCase {
 
     const token = jwt.sign(
       {
-        emai: user.email,
+        email: user.email,
       },
       JWT_SECRET,
       { expiresIn: "1h" }

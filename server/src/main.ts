@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import loanRouter from "./ui/routes/LoanRoutes";
 import authRouter from "./ui/routes/AuthRoutes";
 import cors from "cors";
+import authMiddleware from "./ui/middleware/AuthMiddleware";
 
 dotenv.config();
 
