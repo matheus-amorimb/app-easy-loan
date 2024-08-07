@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import SimulateLoan from "../../application/use-cases/SimulateLoan";
+import SimulateLoan from "../../application/use-cases/Loan/SimulateLoan";
 import { SimulateLoanInputClass } from "../../application/dtos/loan/SimulateLoanInput";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
-import ApplyForLoan from "../../application/use-cases/ApplyForLoan";
+import ApplyForLoan from "../../application/use-cases/Loan/ApplyForLoan";
 import DatabaseConnection from "../../infrastructure/database/DatabaseConnection";
 import ILoanRepository from "../../application/repositories/ILoanRepository";
 import LoanRepository from "../../infrastructure/repositories/LoanRepository";
@@ -11,7 +11,7 @@ import IInstallmentRepository from "../../application/repositories/IInstallmentR
 import InstallmentRepository from "../../infrastructure/repositories/InstallmentRepository";
 import { ApplyForLoanInputClass } from "../../application/dtos/loan/ApplyForLoanInput";
 import { formatErrorMessage } from "../utils/FormatErrorMessage";
-import GetLoans from "../../application/use-cases/GetLoans";
+import GetLoans from "../../application/use-cases/Loan/GetLoans";
 
 const connection: DatabaseConnection = new DatabaseConnection();
 const loanRepository: ILoanRepository = new LoanRepository(connection);

@@ -1,10 +1,10 @@
-import { Loan } from "../../domain/entities/Loan";
-import CalculateInstallements from "../../domain/services/CalculateInstallments";
-import ApplyForLoanInput from "../dtos/loan/ApplyForLoanInput";
-import ApplyForLoanOutput from "../dtos/loan/ApplyForLoanOutput";
-import IInstallmentRepository from "../repositories/IInstallmentRepository";
-import ILoanRepository from "../repositories/ILoanRepository";
-import UseCase from "./UseCase";
+import { Loan } from "../../../domain/entities/Loan";
+import CalculateInstallements from "../../../domain/services/CalculateInstallments";
+import ApplyForLoanInput from "../../dtos/loan/ApplyForLoanInput";
+import ApplyForLoanOutput from "../../dtos/loan/ApplyForLoanOutput";
+import IInstallmentRepository from "../../repositories/IInstallmentRepository";
+import ILoanRepository from "../../repositories/ILoanRepository";
+import UseCase from "../UseCase";
 
 export default class ApplyForLoan implements UseCase {
   constructor(

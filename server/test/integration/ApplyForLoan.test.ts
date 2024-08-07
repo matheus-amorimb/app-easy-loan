@@ -1,10 +1,10 @@
 import LoanBuilder from "../utils/LoanBuilder";
 import LoanRepository from "../../src/infrastructure/repositories/LoanRepository";
-import ApplyForLoan from "../../src/application/use-cases/ApplyForLoan";
+import ApplyForLoan from "../../src/application/use-cases/Loan/ApplyForLoan";
 import DatabaseConnection from "../../src/infrastructure/database/DatabaseConnection";
-import GetLoan from "../../src/application/use-cases/GetLoan";
+import GetLoan from "../../src/application/use-cases/Loan/GetLoan";
 import InstallmentRepository from "../../src/infrastructure/repositories/InstallmentRepository";
-import GetInstallments from "../../src/application/use-cases/GetInstallments";
+import GetInstallments from "../../src/application/use-cases/Installment/GetInstallments";
 
 test("Should apply for loan successfully", async function () {
   const connection = new DatabaseConnection();
@@ -17,7 +17,7 @@ test("Should apply for loan successfully", async function () {
   const applyForLoanInput = {
     userCpf: "148036",
     userUf: "MG",
-    userBirthday: new Date("1998-06-18T03:00:00.000Z"),
+    userBirthdate: new Date("1998-06-18T03:00:00.000Z"),
     total: 60000,
     monthlyInstallment: 15000,
   };

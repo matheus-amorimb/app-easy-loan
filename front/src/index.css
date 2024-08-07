@@ -4,7 +4,7 @@
   --box-shadow-color: #ececec;
   --table-line-color: #c4c4c4;
   --simulate-button: #f3a126;
-  --apply-button-color: #21AE1E;
+  --apply-button-color: #21ae1e;
   --apply-button-disabled-color: #1a8a14;
   --simulate-button-color: #f3a126;
 
@@ -65,7 +65,7 @@ h3 {
   font-size: 14px;
 }
 
-button{
+button {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 2rem;
@@ -73,7 +73,7 @@ button{
   border-radius: 6px;
   border-color: transparent;
   box-shadow: 0px 4px 4px 0px #878787;
-  letter-spacing: 7%
+  letter-spacing: 7%;
 }
 
 .container {
@@ -113,7 +113,6 @@ button{
   .main-box {
     padding: 5rem;
   }
-
 }
 
 @media (min-width: 640px) {
@@ -127,15 +126,3 @@ button{
     max-width: 967px;
   }
 }
-
-/* @media (min-width: 1024px) {
-  .container {
-    max-width: calc(1024px * (967 / var(--prototype-width-value)));
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: calc(1280px * (967 / var(--prototype-width-value)));
-  }
-} */

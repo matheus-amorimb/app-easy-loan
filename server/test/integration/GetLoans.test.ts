@@ -2,7 +2,7 @@ import GetLoans from "../../src/application/use-cases/GetLoans";
 import DatabaseConnection from "../../src/infrastructure/database/DatabaseConnection";
 import LoanRepository from "../../src/infrastructure/repositories/LoanRepository";
 import InstallmentRepository from "../../src/infrastructure/repositories/InstallmentRepository";
-import ApplyForLoan from "../../src/application/use-cases/ApplyForLoan";
+import ApplyForLoan from "../../src/application/use-cases/Loan/ApplyForLoan";
 import GetLoanOutput from "../../src/application/dtos/loan/GetLoanOutput";
 
 test("Should list all loans created", async function () {

@@ -1,4 +1,4 @@
-DROP SCHEMA easyloan CASCADE;
+DROP SCHEMA IF EXISTS easyloan CASCADE;
 
 CREATE SCHEMA easyloan;
 
@@ -21,4 +21,14 @@ CREATE TABLE easyloan.installment (
   adjusted_outstanding_balance NUMERIC NOT NULL,
   amount NUMERIC NOT NULL,
   due_date TIMESTAMP
+);
+
+CREATE TABLE easyloan.user (
+  id UUID PRIMARY KEY,
+  full_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  cpf TEXT NOT NULL,
+  password TEXT NOT NULL,
+  uf TEXT NOT NULL,
+  birthdate TIMESTAMP
 );

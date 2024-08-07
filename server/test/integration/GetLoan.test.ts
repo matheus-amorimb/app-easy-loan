@@ -1,4 +1,4 @@
-import ApplyForLoan from "../../src/application/use-cases/ApplyForLoan";
+import ApplyForLoan from "../../src/application/use-cases/Loan/ApplyForLoan";
 import GetLoan from "../../src/application/use-cases/GetLoan";
 import DatabaseConnection from "../../src/infrastructure/database/DatabaseConnection";
 import InstallmentRepository from "../../src/infrastructure/repositories/InstallmentRepository";
