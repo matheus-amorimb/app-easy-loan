@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-modal';
 import {
-  FormatToCurrency,
+  formatToCurrency,
   getICMSValue,
-  FormatDateToDDMMYY,
+  formatDateToDDMMYY,
 } from '../../utils/InstallmentUtils';
 import { useLoan } from '../../hooks/useLoan';
 
@@ -23,6 +23,7 @@ const LoanForm: React.FC<{ simulateLoanInput: SimulateLoanInput }> = ({
     setModalIsOpen,
     shouldDisplayInstallments,
     submitLoan,
+    interest,
   } = useLoan(simulateLoanInput);
 
   return (
@@ -38,7 +39,7 @@ const LoanForm: React.FC<{ simulateLoanInput: SimulateLoanInput }> = ({
               <div className="loan-information-col-1">
                 <div>
                   <h3>valor requerido</h3>
-                  <h2>{FormatToCurrency(simulateLoanInput?.total)}</h2>
+                  <h2>{formatToCurrency(simulateLoanInput?.total)}</h2>
                 </div>
                 <div>
                   <h3>total de meses para quitar</h3>
@@ -48,24 +49,24 @@ const LoanForm: React.FC<{ simulateLoanInput: SimulateLoanInput }> = ({
               <div className="loan-information-col-2">
                 <div>
                   <h3>taxa de juros</h3>
-                  <h2>{getICMSValue(simulateLoanInput?.userUf)}% ao mês</h2>
+                  <h2>{interest}% ao mês</h2>
                 </div>
                 <div>
                   <h3>total de juros</h3>
-                  <h2>{FormatToCurrency(totalInterest)}</h2>
+                  <h2>{formatToCurrency(totalInterest)}</h2>
                 </div>
               </div>
               <div className="loan-information-col-3">
                 <div>
                   <h3>valor que deseja pagar por mês</h3>
                   <h2>
-                    {FormatToCurrency(simulateLoanInput?.monthlyInstallment)}
+                    {formatToCurrency(simulateLoanInput?.monthlyInstallment)}
                   </h2>
                 </div>
                 <div>
                   <h3>total a pagar</h3>
                   <h2>
-                    {FormatToCurrency(simulateLoanInput?.total + totalInterest)}
+                    {formatToCurrency(simulateLoanInput?.total + totalInterest)}
                   </h2>
                 </div>
               </div>
@@ -86,20 +87,20 @@ const LoanForm: React.FC<{ simulateLoanInput: SimulateLoanInput }> = ({
                   {installments?.map((installment: Installment) => (
                     <tr className="installment-row" key={installment.number}>
                       <td>
-                        {FormatToCurrency(installment.outstandingBalance)}
+                        {formatToCurrency(installment.outstandingBalance)}
                       </td>
-                      <td>{FormatToCurrency(installment.interest)}</td>
+                      <td>{formatToCurrency(installment.interest)}</td>
                       <td>
-                        {FormatToCurrency(
+                        {formatToCurrency(
                           installment.adjustedOutstandingBalance,
                         )}
                       </td>
-                      <td>{FormatToCurrency(installment.amount)}</td>
-                      <td>{FormatDateToDDMMYY(installment.dueData)}</td>
+                      <td>{formatToCurrency(installment.amount)}</td>
+                      <td>{formatDateToDDMMYY(installment.dueData)}</td>
                     </tr>
                   ))}
                   <tr className="installment-row">
-                    <td>{FormatToCurrency(0)}</td>
+                    <td>{formatToCurrency(0)}</td>
                   </tr>
                 </tbody>
               </table>

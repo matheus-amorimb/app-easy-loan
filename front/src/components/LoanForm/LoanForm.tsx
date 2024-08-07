@@ -1,13 +1,8 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
 import './LoanForm.css';
 import { SimulateLoanInput } from '../../models/SimulateLoanInput';
 import {
-  removeNonDigits,
-  convertToDate,
   cleanCurrencyString,
-  validateCpf,
-  validateBirthdate,
   validateLoanAmount,
   currencyMask,
   validateMonthlyInstallment,
@@ -27,9 +22,6 @@ const LoanForm: React.FC<LoanFormProps> = ({ onSubmit }) => {
 
   const onSubmitHandler: SubmitHandler<SimulateLoanInput> = (data: any) => {
     const simulateInput: SimulateLoanInput = {
-      userCpf: removeNonDigits(data?.userCpf),
-      userUf: data?.userUf,
-      userBirthdate: convertToDate(data?.userBirthdate).toDateString(),
       total: parseFloat(cleanCurrencyString(data?.total)),
       monthlyInstallment: parseFloat(
         cleanCurrencyString(data?.monthlyInstallment),
@@ -50,55 +42,13 @@ const LoanForm: React.FC<LoanFormProps> = ({ onSubmit }) => {
           className="loan-form"
           onSubmit={handleSubmit(onSubmitHandler)}
         >
-          <InputMask
-            mask="999.999.999-99"
-            {...register('userCpf', {
-              required: 'CPF é obrigatório.',
-              validate: validateCpf,
-            })}
-            type="text"
-            placeholder="CPF"
-          />
-          {errors.userCpf && (
-            <div className="form-error-message">{errors.userCpf?.message}</div>
-          )}
-          <select
-            {...register('userUf', {
-              required: 'UF é obrigatório.',
-            })}
-          >
-            <option value="" hidden>
-              UF
-            </option>
-            <option value="ES">ES</option>
-            <option value="MG">MG</option>
-            <option value="RJ">RJ</option>
-            <option value="SP">SP</option>
-          </select>
-          {errors.userUf && (
-            <div className="form-error-message">{errors.userUf?.message}</div>
-          )}
-          <InputMask
-            mask="99/99/9999"
-            {...register('userBirthdate', {
-              required: 'Data de nascimento é obrigatório.',
-              validate: validateBirthdate,
-            })}
-            type="text"
-            placeholder="DATA DE NASCIMENTO"
-          />
-          {errors.userBirthdate && (
-            <div className="form-error-message">
-              {errors.userBirthdate?.message}
-            </div>
-          )}
           <input
             {...register('total', {
               required: 'Valor do empréstimo é obrigatório.',
               validate: validateLoanAmount,
             })}
             type="text"
-            placeholder="QUAL O VALOR DO EMPRÉSTIMO?"
+            placeholder="Qual valor do empréstimo?"
             onChange={(e) => {
               e.target.value = currencyMask(e.target.value);
             }}
@@ -113,7 +63,7 @@ const LoanForm: React.FC<LoanFormProps> = ({ onSubmit }) => {
                 validateMonthlyInstallment(value, getValues('total')),
             })}
             type="text"
-            placeholder="QUAL VALOR DESEJA PAGAR POR MÊS?"
+            placeholder="Qual valor deseja pagar por mês?"
             onChange={(e) => {
               e.target.value = currencyMask(e.target.value);
             }}

@@ -143,15 +143,18 @@
 
 .modal h2 {
   text-align: center;
+  color: var(--accent-color);
+  font-weight: bolder;
 }
 
 .modal-close-button {
   position: absolute;
-  top: 10px;
+  width: 0;
+  top: -5px;
   right: 10px;
   background: none;
   border: none;
-  color: var(--apply-button-color);
+  color: var(--accent-color);
   cursor: pointer;
   font-size: 2rem;
   line-height: 1;

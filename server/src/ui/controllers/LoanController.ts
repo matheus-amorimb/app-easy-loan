@@ -73,7 +73,7 @@ export default class LoanController {
     const getLoans = new GetLoans(userRepository, loanRepository);
     try {
       const loans = await getLoans.execute(res.locals.user.email);
-      res.status(200).json({ loans });
+      res.status(200).json(loans);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
     }
