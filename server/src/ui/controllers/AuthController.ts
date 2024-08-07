@@ -11,7 +11,7 @@ import UserRepository from "../../infrastructure/repositories/UserRepository";
 import SignIn from "../../application/use-cases/User/SignIn";
 import { SignInInputClass } from "../../application/dtos/auth/SIgnInInput";
 
-const connection: DatabaseConnection = new DatabaseConnection();
+const connection: DatabaseConnection = DatabaseConnection.getInstance();
 const userRepository: IUserRepository = new UserRepository(connection);
 
 export default class AuthController {

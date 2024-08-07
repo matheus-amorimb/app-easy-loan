@@ -5,19 +5,23 @@ import DatabaseConnection from "../../src/infrastructure/database/DatabaseConnec
 import GetLoan from "../../src/application/use-cases/Loan/GetLoan";
 import InstallmentRepository from "../../src/infrastructure/repositories/InstallmentRepository";
 import GetInstallments from "../../src/application/use-cases/Installment/GetInstallments";
+import UserRepository from "../../src/infrastructure/repositories/UserRepository";
 
 test("Should apply for loan successfully", async function () {
   const connection = new DatabaseConnection();
   const loanRepository = new LoanRepository(connection);
   const installmentRepository = new InstallmentRepository(connection);
-  const applyForLoan = new ApplyForLoan(loanRepository, installmentRepository);
+  const userRepository = new UserRepository(connection);
+  const applyForLoan = new ApplyForLoan(
+    userRepository,
+    loanRepository,
+    installmentRepository
+  );
   const getLoan = new GetLoan(loanRepository);
   const getInstallments = new GetInstallments(installmentRepository);
 
   const applyForLoanInput = {
-    userCpf: "148036",
-    userUf: "MG",
-    userBirthdate: new Date("1998-06-18T03:00:00.000Z"),
+    userEmail: "mbatista.sarti@gmail.com",
     total: 60000,
     monthlyInstallment: 15000,
   };

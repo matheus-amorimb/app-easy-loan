@@ -15,7 +15,7 @@ import GetLoans from "../../application/use-cases/Loan/GetLoans";
 import IUserRepository from "../../application/repositories/IUserRepository";
 import UserRepository from "../../infrastructure/repositories/UserRepository";
 
-const connection: DatabaseConnection = new DatabaseConnection();
+const connection: DatabaseConnection = DatabaseConnection.getInstance();
 const loanRepository: ILoanRepository = new LoanRepository(connection);
 const installmentRepository: IInstallmentRepository = new InstallmentRepository(
   connection
