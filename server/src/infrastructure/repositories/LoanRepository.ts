@@ -7,7 +7,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async getAll(): Promise<Loan[]> {
     const loans = await this.connection.query(
-      "SELECT * FROM easyloan.loan ORDER BY date",
+      "SELECT * FROM appeasyloan.loan ORDER BY date",
       []
     );
 
@@ -25,7 +25,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async getById(loanId: string) {
     const [loan] = await this.connection.query(
-      "SELECT * FROM easyloan.loan WHERE id = $1",
+      "SELECT * FROM appeasyloan.loan WHERE id = $1",
       [loanId]
     );
     if (!loan) return;
@@ -41,7 +41,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async getByUser(cpf: string): Promise<Loan[] | undefined> {
     const loans = await this.connection.query(
-      "SELECT * FROM easyloan.loan WHERE user_cpf = $1 ORDER BY date DESC",
+      "SELECT * FROM appeasyloan.loan WHERE user_cpf = $1 ORDER BY date DESC",
       [cpf]
     );
     return loans?.map((loan: any) => {
@@ -58,7 +58,7 @@ export default class LoanRepository implements ILoanRepository {
 
   async save(loan: Loan) {
     await this.connection.query(
-      "INSERT INTO easyloan.loan (id, user_cpf, user_uf, total, monthly_installment, date) VALUES ($1, $2, $3, $4, $5, $6)",
+      "INSERT INTO appeasyloan.loan (id, user_cpf, user_uf, total, monthly_installment, date) VALUES ($1, $2, $3, $4, $5, $6)",
       [
         loan.id,
         loan.userCpf,

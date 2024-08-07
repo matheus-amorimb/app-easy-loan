@@ -7,7 +7,7 @@ export default class InstallmentRepository implements IInstallmentRepository {
 
   async getByLoanId(loanId: string) {
     const installments = await this.connection.query(
-      "SELECT * FROM easyloan.installment WHERE loan_id = $1 ORDER BY due_date ASC",
+      "SELECT * FROM appeasyloan.installment WHERE loan_id = $1 ORDER BY due_date ASC",
       [loanId]
     );
     if (!installments) return;
@@ -27,7 +27,7 @@ export default class InstallmentRepository implements IInstallmentRepository {
 
   async save(installment: Installment): Promise<void> {
     await this.connection.query(
-      "INSERT INTO easyloan.installment (id, loan_id, number, outstanding_balance, interest, adjusted_outstanding_balance, amount, due_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+      "INSERT INTO appeasyloan.installment (id, loan_id, number, outstanding_balance, interest, adjusted_outstanding_balance, amount, due_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [
         installment.id,
         installment.loanId,
@@ -42,6 +42,6 @@ export default class InstallmentRepository implements IInstallmentRepository {
   }
 
   async deleteAll() {
-    await this.connection.query("DELETE FROM easyloan.installment", []);
+    await this.connection.query("DELETE FROM appeasyloan.installment", []);
   }
 }

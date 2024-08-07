@@ -7,7 +7,7 @@ export default class UserRepository implements IUserRepository {
 
   async isEmailInUse(email: string): Promise<boolean> {
     const [result] = await this.connection.query(
-      "SELECT COUNT(*) FROM easyloan.user WHERE email = $1",
+      "SELECT COUNT(*) FROM appeasyloan.user WHERE email = $1",
       [email]
     );
     return result?.count !== "0";
@@ -15,7 +15,7 @@ export default class UserRepository implements IUserRepository {
 
   async isCpfInUse(cpf: string): Promise<boolean> {
     const [result] = await this.connection.query(
-      "SELECT COUNT(*) FROM easyloan.user WHERE cpf = $1",
+      "SELECT COUNT(*) FROM appeasyloan.user WHERE cpf = $1",
       [cpf]
     );
     return result?.count !== "0";
@@ -23,7 +23,7 @@ export default class UserRepository implements IUserRepository {
 
   async getByEmail(email: string): Promise<User | undefined> {
     const [user] = await this.connection.query(
-      "SELECT * FROM easyloan.user WHERE email = $1",
+      "SELECT * FROM appeasyloan.user WHERE email = $1",
       [email]
     );
     if (!user) return;
@@ -40,7 +40,7 @@ export default class UserRepository implements IUserRepository {
 
   async save(user: User): Promise<void> {
     await this.connection.query(
-      "INSERT INTO easyloan.user(id, full_name, cpf, email, password, birthdate, uf) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      "INSERT INTO appeasyloan.user(id, full_name, cpf, email, password, birthdate, uf) VALUES ($1, $2, $3, $4, $5, $6, $7)",
       [
         user.id,
         user.fullName,
