@@ -11,14 +11,8 @@
 <p align="center">
 	<img src="./screenshot/log_in_page.png" alt="" />
 	<img src="./screenshot/sign_up_page.png" alt="" />
-</p>
-
-<p align="center">
 	<img src="./screenshot/loan_simulate.png" alt="" />
 	<img src="./screenshot/installments.png" alt="" />
-</p>
-
-<p align="center">
 	<img src="./screenshot/loans.png" alt="" />
 </p>
 
@@ -28,7 +22,6 @@
 </p>
 
 <p align="center">
-	<img src="./screenshot/loan_simulate.png" alt="" />
 	<img src="./screenshot/installments_mobile.png" alt="" />
 	<img src="./screenshot/loans_mobile.png" alt="" />
 </p>
