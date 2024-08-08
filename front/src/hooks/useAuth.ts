@@ -4,6 +4,7 @@ import axios from 'axios';
 import { SignInOutput } from '../models/SignInOutput';
 import SignUpInput from '../models/SignUpInput';
 import { SignUpOutput } from '../models/SignUpOutput';
+import { setToken } from '../AxiosConfig';
 
 const apiURL = 'http://18.231.175.178:4000/v2';
 
@@ -20,7 +21,7 @@ const useAuth = () => {
         data,
       );
       const { tokenJwt } = response.data;
-      localStorage.setItem('tokenJwt', tokenJwt);
+      setToken(tokenJwt);
       onSucess();
     } catch (error) {
       if (!error) return;
@@ -40,7 +41,7 @@ const useAuth = () => {
         data,
       );
       const { tokenJwt } = response.data;
-      localStorage.setItem('token', tokenJwt);
+      setToken(tokenJwt);
       onSucess();
     } catch (error) {
       console.log(error);
