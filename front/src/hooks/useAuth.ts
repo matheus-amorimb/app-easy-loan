@@ -5,7 +5,7 @@ import { SignInOutput } from '../models/SignInOutput';
 import SignUpInput from '../models/SignUpInput';
 import { SignUpOutput } from '../models/SignUpOutput';
 
-const apiURL = 'http://localhost:3000/v2';
+const apiURL = 'http://18.231.175.178:4000/v2';
 
 const useAuth = () => {
   const [loading, setLoading] = useState(false);
