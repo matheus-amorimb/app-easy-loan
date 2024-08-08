@@ -22,9 +22,9 @@
 </p>
 
 <p align="center">
+	<img src="./screenshot/loan_simulate_mobile.png" alt="" />
 	<img src="./screenshot/installments_mobile.png" alt="" />
 	<img src="./screenshot/loans_mobile.png" alt="" />
-	<img src="./screenshot/loan_simulate_mobile.png" alt="" />
 </p>
 
 
