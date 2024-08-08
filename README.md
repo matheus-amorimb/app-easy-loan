@@ -4,17 +4,32 @@
 </h2>
 
 <p align="center">
-	<img src="./screenshot/loan-form.png" alt="" />
+	<img src="./screenshot/log_in_page.png" alt="" />
+	<img src="./screenshot/sign_up_page.png" alt="" />
+</p>
+
+<p align="center">
+	<img src="./screenshot/loan_simulate.png" alt="" />
 	<img src="./screenshot/installments.png" alt="" />
 </p>
 
 <p align="center">
-	<img src="./screenshot/loan-form-mobile.png" alt=""/>
-	<img src="./screenshot/installments-mobile.png" alt="" />
+	<img src="./screenshot/loans.png" alt="" />
 </p>
 
 <p align="center">
-	<a href="http://18.231.175.178:5173/">Abrir aplicação</a>
+	<img src="./screenshot/log_in_mobile.png" alt="" />
+	<img src="./screenshot/sign_up_mobile.png" alt="" />
+</p>
+
+<p align="center">
+	<img src="./screenshot/loan_simulate.png" alt="" />
+	<img src="./screenshot/installments_mobile.png" alt="" />
+	<img src="./screenshot/loans_mobile.png" alt="" />
+</p>
+
+<p align="center">
+	<a href="http://18.231.175.178:5174/">Abrir aplicação</a>
 </p>
 
 
